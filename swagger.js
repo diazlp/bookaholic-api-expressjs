@@ -19,7 +19,7 @@ const options = {
       },
     },
   },
-  apis: ['./routes/authRoutes.js', './routes/categoryRoutes.js'],
+  apis: ['./routes/authRoutes.js', './routes/categoryRoutes.js', './routes/bookRoutes.js'],
   security: [
     {
       BearerAuth: [],

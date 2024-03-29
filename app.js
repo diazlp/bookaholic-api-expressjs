@@ -6,6 +6,7 @@ const app = express();
 
 const authRoutes = require('./routes/authRoutes');
 const categoryRoutes = require('./routes/categoryRoutes')
+const bookRoutes = require('./routes/bookRoutes')
 // const jobRoutes = require('./routes/jobRoutes');
 
 const authMiddleware = require('./middleware/authMiddleware')
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use('/auth', authRoutes)
 app.use('/categories', categoryRoutes)
+app.use('/books', bookRoutes)
 // app.use('/jobs', authMiddleware, jobRoutes);
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));

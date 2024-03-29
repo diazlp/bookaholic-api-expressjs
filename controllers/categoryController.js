@@ -23,7 +23,7 @@ exports.create = async (req, res) => {
     const newCategory = await Category.create({ name });
 
     res.status(201).json({
-      message: 'Book category added successfully', category: {
+      message: 'Book category added successfully', data: {
         name: newCategory.name
       }
     });
@@ -37,22 +37,22 @@ exports.update = async (req, res) => {
   const { name } = req.body;
 
   try {
-    const existingCategory = await Category.findOne({ where: { id } });
+    const existingCategory = await Category.findByPk(id);
 
     if (!existingCategory) {
-      return res.status(400).json({ message: 'Book category not found' });
+      return res.status(404).json({ message: 'Book category not found' });
     }
 
-    await Category.update({
+    await existingCategory.update({
       name
-    }, {
-      where: { id }
     })
 
+    const updatedCategory = await Category.findByPk(id);
+
     res.status(200).json({
-      message: 'Book category updated successfully', category: {
+      message: 'Book category updated successfully', data: {
         id,
-        name
+        name: updatedCategory.name
       }
     })
   } catch (error) {
@@ -75,7 +75,7 @@ exports.delete = async (req, res) => {
     })
 
     res.status(200).json({
-      message: 'Book category deleted successfully', category: {
+      message: 'Book category deleted successfully', data: {
         id: existingCategory.id,
         name: existingCategory.name
       }

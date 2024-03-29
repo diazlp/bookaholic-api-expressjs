@@ -61,7 +61,7 @@ router.get('/', categoryController.findAll);
  *           application/json:
  *             example:
  *               message: Book category added successfully
- *               category:
+ *               data:
  *                 name: Fiction
  *       '400':
  *         description: Add Book Category Failed
@@ -102,13 +102,13 @@ router.post('/', categoryController.create);
  *                 type: string
  *                 example: Non-Fiction
  *     responses:
- *       '201':
+ *       '200':
  *         description: Update Book Category Success
  *         content:
  *           application/json:
  *             example:
  *               message: Book category updated successfully
- *               category:
+ *               data:
  *                 id: 1
  *                 name: Non-Fiction
  *       '400':
@@ -146,10 +146,10 @@ router.patch('/:id', categoryController.update);
  *           application/json:
  *             example:
  *               message: Book category deleted successfully
- *               category:
+ *               data:
  *                 id: 1
  *                 name: Non-Fiction
- *       '400':
+ *       '404':
  *         description: Delete Book Category Failed
  *         content:
  *           application/json:
@@ -164,6 +164,5 @@ router.patch('/:id', categoryController.update);
  *               error: reason for error
  */
 router.delete('/:id', categoryController.delete);
-
 
 module.exports = router

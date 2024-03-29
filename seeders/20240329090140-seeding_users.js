@@ -9,8 +9,8 @@ module.exports = {
       id: cuid(),
       username: 'admin',
       password: await bcrypt.hash("admin", 10),
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      created_at: new Date(),
+      updated_at: new Date(),
     }])
   },
 

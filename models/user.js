@@ -14,6 +14,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
   }, {
+    timestamps: false,
     hooks: {
       beforeCreate: async (user) => {
         user.id = cuid()
