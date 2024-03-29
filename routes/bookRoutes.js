@@ -16,6 +16,38 @@ const bookController = require('../controllers/bookController')
  *   get:
  *     summary: Get books
  *     tags: [Books]
+ *     parameters:
+ *       - in: query
+ *         name: title
+ *         schema:
+ *           type: string
+ *         description: Search by title (case insensitive)
+ *       - in: query
+ *         name: minYear
+ *         schema:
+ *           type: integer
+ *         description: Minimum release year
+ *       - in: query
+ *         name: maxYear
+ *         schema:
+ *           type: integer
+ *         description: Maximum release year
+ *       - in: query
+ *         name: minPage
+ *         schema:
+ *           type: integer
+ *         description: Minimum total page
+ *       - in: query
+ *         name: maxPage
+ *         schema:
+ *           type: integer
+ *         description: Maximum total page
+ *       - in: query
+ *         name: sortByTitle
+ *         schema:
+ *           type: string
+ *           enum: [ASC, DESC]
+ *         description: Sort by title in ascending or descending order
  *     responses:
  *       '200':
  *         description: Successful response with books
