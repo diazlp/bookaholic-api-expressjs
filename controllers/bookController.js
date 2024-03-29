@@ -129,10 +129,10 @@ exports.delete = async (req, res) => {
   const { id } = req.params
 
   try {
-    const existingBook = await Book.findOne({ where: { id } });
+    const existingBook = await Book.findByPk(id);
 
     if (!existingBook) {
-      return res.status(400).json({ message: 'Book not found' });
+      return res.status(404).json({ message: 'Book not found' });
     }
 
     await Book.destroy({

@@ -1,4 +1,4 @@
-const { Category } = require('../models')
+const { Category, Book } = require('../models')
 
 exports.findAll = async (_, res) => {
   try {
@@ -82,5 +82,32 @@ exports.delete = async (req, res) => {
     })
   } catch (error) {
     res.status(500).json({ message: 'Failed to delete Book category', error: error.message });
+  }
+}
+
+exports.findAllBooks = async (req, res) => {
+  const { id } = req.params
+
+  try {
+    const existingCategory = await Category.findOne({ where: { id } })
+
+    if (!existingCategory) {
+      return res.status(404).json({ message: 'Book category not found' });
+    }
+
+    const allBookCategories = await Book.findAndCountAll({
+      where: {
+        category_id: id
+      },
+      attributes: {
+        exclude: ['created_at', 'updated_at']
+      }
+    })
+
+    console.log(allBookCategories)
+
+    res.status(200).json(allBookCategories)
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch Book categories', error: error.message });
   }
 }

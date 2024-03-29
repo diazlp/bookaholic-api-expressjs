@@ -64,7 +64,7 @@ router.get('/', categoryController.findAll);
  *               data:
  *                 name: Fiction
  *       '400':
- *         description: Add Book Category Failed
+ *         description: Bad Request Error
  *         content:
  *           application/json:
  *             example:
@@ -111,8 +111,8 @@ router.post('/', categoryController.create);
  *               data:
  *                 id: 1
  *                 name: Non-Fiction
- *       '400':
- *         description: Update Book Category Failed
+ *       '404':
+ *         description: Not Found Error
  *         content:
  *           application/json:
  *             example:
@@ -150,7 +150,7 @@ router.patch('/:id', categoryController.update);
  *                 id: 1
  *                 name: Non-Fiction
  *       '404':
- *         description: Delete Book Category Failed
+ *         description: Not Found Error
  *         content:
  *           application/json:
  *             example:
@@ -164,5 +164,50 @@ router.patch('/:id', categoryController.update);
  *               error: reason for error
  */
 router.delete('/:id', categoryController.delete);
+
+/**
+ * @swagger
+ * /categories/{id}/books:
+ *   get:
+ *     summary: Get book categories
+ *     tags: [Categories]
+ *     parameters:
+ *     - in: path
+ *       name: id
+ *       required: true
+ *       schema:
+ *          type: integer
+ *     responses:
+ *       '200':
+ *         description: Successful response with book categories
+ *         content:
+ *           application/json:
+ *             example:
+ *               count: 1
+ *               rows:
+ *                 - id: 1
+ *                   name: "The Great Gatsby"
+ *                   description: "A novel by F. Scott Fitzgerald"
+ *                   image_url: "https://example.com/great-gatsby.jpg"
+ *                   release_year: 1981
+ *                   price: "IDR 49000"
+ *                   total_page: 180
+ *                   thickness: "sedang"
+ *                   category_id: 1
+ *       '404':
+ *         description: Not Found Error
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Book category not found
+ *       '500':
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Failed to fetch Book categories
+ *               error: reason for error
+ */
+router.get('/:id/books', categoryController.findAllBooks);
 
 module.exports = router

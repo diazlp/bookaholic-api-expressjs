@@ -24,7 +24,7 @@ const bookController = require('../controllers/bookController')
  *             example:
  *               count: 1
  *               rows:
- *                 - id: 9
+ *                 - id: 1
  *                   name: "The Great Gatsby"
  *                   description: "A novel by F. Scott Fitzgerald"
  *                   image_url: "https://example.com/great-gatsby.jpg"
@@ -182,7 +182,7 @@ router.post('/', bookController.create);
  *                   id: 1
  *                   name: Fiction
  *       '404':
- *         description: Update Book Failed
+ *         description: Not Found Error
  *         content:
  *           application/json:
 *             examples:
@@ -224,8 +224,8 @@ router.patch('/:id', bookController.update);
  *               data:
  *                 id: 1
  *                 title: The Great Gatsby
- *       '400':
- *         description: Delete Book Failed
+ *       '404':
+ *         description: Not Found Error
  *         content:
  *           application/json:
  *             example:
@@ -239,6 +239,5 @@ router.patch('/:id', bookController.update);
  *               error: reason for error
  */
 router.delete('/:id', bookController.delete);
-
 
 module.exports = router
