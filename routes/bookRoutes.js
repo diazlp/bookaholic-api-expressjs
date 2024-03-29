@@ -92,22 +92,22 @@ router.get('/', bookController.findAll);
  *             properties:
  *               title:
  *                 type: string
- *                 example: The Great Gatsby
+ *                 example: Laskar Pelangi
  *               description:
  *                 type: string
- *                 example: A novel by F. Scott Fitzgerald
+ *                 example: A novel by Andrea Hirata
  *               image_url:
  *                 type: string
- *                 example: https://example.com/great-gatsby.jpg
+ *                 example: https://m.media-amazon.com/images/I/81bVfccEjyL._SL1500_.jpg
  *               release_year:
  *                 type: integer
- *                 example: 1981
+ *                 example: 2013
  *               price:
  *                 type: string
- *                 example: IDR 49000
+ *                 example: IDR 67000
  *               total_page:
  *                 type: integer
- *                 example: 180
+ *                 example: 305
  *               category_id:
  *                 type: integer
  *                 example: 1
@@ -119,14 +119,14 @@ router.get('/', bookController.findAll);
  *             example:
  *               message: Book created successfully
  *               data:
- *                 id: 1
- *                 title: The Great Gatsby
- *                 description: A novel by F. Scott Fitzgerald
- *                 image_url: https://example.com/great-gatsby.jpg
- *                 release_year: 1981
- *                 price: IDR 49000
- *                 total_page: 180
- *                 thickness: sedang
+ *                 id: 36
+ *                 title: Laskar Pelangi
+ *                 description: A novel by Andrea Hirata
+ *                 image_url: https://m.media-amazon.com/images/I/81bVfccEjyL._SL1500_.jpg
+ *                 release_year: 2013
+ *                 price: IDR 67000
+ *                 total_page: 305
+ *                 thickness: tebal
  *                 Category:
  *                   id: 1
  *                   name: Fiction
@@ -181,7 +181,7 @@ router.post('/', bookController.create);
  *                 example: A novel by F. Scott Fitzgerald
  *               image_url:
  *                 type: string
- *                 example: https://example.com/great-gatsby.jpg
+ *                 example: https://m.media-amazon.com/images/I/61z0MrB6qOS._SL1500_.jpg
  *               release_year:
  *                 type: integer
  *                 example: 1981
@@ -190,7 +190,7 @@ router.post('/', bookController.create);
  *                 example: IDR 49000
  *               total_page:
  *                 type: integer
- *                 example: 180
+ *                 example: 110
  *               category_id:
  *                 type: integer
  *                 example: 1
@@ -205,10 +205,10 @@ router.post('/', bookController.create);
  *                 id: 1
  *                 title: The Great Gatsby
  *                 description: A novel by F. Scott Fitzgerald
- *                 image_url: https://example.com/great-gatsby.jpg
+ *                 image_url: https://m.media-amazon.com/images/I/61z0MrB6qOS._SL1500_.jpg
  *                 release_year: 1981
  *                 price: IDR 49000
- *                 total_page: 180
+ *                 total_page: 110
  *                 thickness: sedang
  *                 Category:
  *                   id: 1

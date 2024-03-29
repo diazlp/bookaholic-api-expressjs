@@ -104,8 +104,6 @@ exports.findAllBooks = async (req, res) => {
       }
     })
 
-    console.log(allBookCategories)
-
     res.status(200).json(allBookCategories)
   } catch (error) {
     res.status(500).json({ message: 'Failed to fetch Book categories', error: error.message });
