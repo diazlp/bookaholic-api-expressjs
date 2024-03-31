@@ -18,7 +18,9 @@ app.use('/auth', authRoutes)
 app.use('/categories', categoryRoutes)
 app.use('/books', bookRoutes)
 
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+// Swagger CDN CSS
+const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { customCssUrl: CSS_URL }));
 
 const PORT = 8000;
 app.listen(PORT, () => {

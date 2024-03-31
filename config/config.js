@@ -8,6 +8,12 @@ const dbConfig = {
     port: '5432',
     dialect: "postgres",
     dialectModule: require('pg'),
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    },
     define: {
       charset: 'utf8mb4',
       collate: 'utf8mb4_general_ci',
