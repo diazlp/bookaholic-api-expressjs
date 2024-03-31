@@ -1,14 +1,14 @@
 const express = require('express');
 const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('./swagger');
+const swaggerSpec = require('../swagger');
 const cors = require("cors")
 const app = express();
 
-const authRoutes = require('./routes/authRoutes');
-const categoryRoutes = require('./routes/categoryRoutes')
-const bookRoutes = require('./routes/bookRoutes')
+const authRoutes = require('../routes/authRoutes');
+const categoryRoutes = require('../routes/categoryRoutes')
+const bookRoutes = require('../routes/bookRoutes')
 
-const authMiddleware = require('./middleware/authMiddleware')
+const authMiddleware = require('../middleware/authMiddleware')
 
 app.use(cors())
 app.use(express.urlencoded({ extended: true }));
@@ -24,3 +24,5 @@ const PORT = 8000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${8000}`);
 });
+
+module.exports = app
