@@ -95,7 +95,7 @@ router.get('/', bookController.findAll);
  *                 example: Laskar Pelangi
  *               description:
  *                 type: string
- *                 example: A novel by Andrea Hirata
+ *                 example: A novel by Andrea Hirata. Following story of lintang of his life challenge for the better good.
  *               image_url:
  *                 type: string
  *                 example: https://m.media-amazon.com/images/I/81bVfccEjyL._SL1500_.jpg
@@ -121,7 +121,7 @@ router.get('/', bookController.findAll);
  *               data:
  *                 id: 36
  *                 title: Laskar Pelangi
- *                 description: A novel by Andrea Hirata
+ *                 description: A novel by Andrea Hirata. Following story of lintang of his life challenge for the better good.
  *                 image_url: https://m.media-amazon.com/images/I/81bVfccEjyL._SL1500_.jpg
  *                 release_year: 2013
  *                 price: IDR 67000
