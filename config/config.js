@@ -9,10 +9,11 @@ const dbConfig = {
     dialect: "postgres",
     dialectModule: require('pg'),
     pool: {
-      max: 5,
+      max: 3,
       min: 0,
-      acquire: 30000,
-      idle: 5000
+      acquire: 5000,
+      idle: 2000,
+      evict: 500
     },
     define: {
       charset: 'utf8mb4',
