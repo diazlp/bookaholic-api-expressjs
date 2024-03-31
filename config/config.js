@@ -1,9 +1,11 @@
+require('dotenv').config()
 const dbConfig = {
   "development": {
     username: process.env.DB_USERNAME || "postgres",
     password: process.env.DB_PASSWORD || "postgres",
     database: process.env.DB_NAME,
-    host: process.env.HOST || "127.0.0.1",
+    host: process.env.DB_HOST || "127.0.0.1",
+    port: '5432',
     dialect: "postgres",
     dialectModule: require('pg'),
     define: {
