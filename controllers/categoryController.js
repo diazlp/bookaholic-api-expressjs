@@ -1,3 +1,4 @@
+const { Op } = require('sequelize')
 const { Category, Book } = require('../models')
 
 exports.findAll = async (_, res) => {
@@ -95,14 +96,51 @@ exports.findAllBooks = async (req, res) => {
       return res.status(404).json({ message: 'Book category not found' });
     }
 
-    const allBookCategories = await Book.findAndCountAll({
+    let filterOptions = {
       where: {
         category_id: id
       },
       attributes: {
         exclude: ['created_at', 'updated_at']
       }
-    })
+    };
+
+    // Apply filters if provided in query parameters
+    if (req.query.title) {
+      filterOptions.where = { title: { [Op.iLike]: `%${req.query.title}%` } };
+    }
+
+    if (req.query.minYear || req.query.maxYear) {
+      filterOptions.where = {
+        ...filterOptions.where,
+        release_year: {}
+      };
+      if (req.query.minYear) {
+        filterOptions.where.release_year[Op.gte] = req.query.minYear;
+      }
+      if (req.query.maxYear) {
+        filterOptions.where.release_year[Op.lte] = req.query.maxYear;
+      }
+    }
+
+    if (req.query.minPage || req.query.maxPage) {
+      filterOptions.where = {
+        ...filterOptions.where,
+        total_page: {}
+      };
+      if (req.query.minPage) {
+        filterOptions.where.total_page[Op.gte] = req.query.minPage;
+      }
+      if (req.query.maxPage) {
+        filterOptions.where.total_page[Op.lte] = req.query.maxPage;
+      }
+    }
+
+    if (req.query.sortByTitle) {
+      filterOptions.order = [['title', req.query.sortByTitle]];
+    }
+
+    const allBookCategories = await Book.findAndCountAll(filterOptions)
 
     res.status(200).json(allBookCategories)
   } catch (error) {

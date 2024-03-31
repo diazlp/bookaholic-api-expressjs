@@ -85,7 +85,7 @@ This Node.js application provides an API for managing books and categories, offe
 
 ### Filtering Books
 
-- Use query parameters to filter books:
+- Use query parameters to filter books and/or categories:
     - `title`: Search by book title (case-insensitive).
     - `minYear`: Minimum publication year.
     - `maxYear`: Maximum publication year.
@@ -96,6 +96,7 @@ This Node.js application provides an API for managing books and categories, offe
 Example:
 - `localhost:8000/books?sortByTitle=asc&minYear=2000&maxPage=150`
 - `localhost:8000/books?title=algoritma&minYear=2000&maxYear=2010`
+- `localhost:8000/categories/1/books?sortByTitle=desc&minYear=2000&maxPage=150`
 
 ## Technologies Used
 
