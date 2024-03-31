@@ -107,7 +107,10 @@ exports.findAllBooks = async (req, res) => {
 
     // Apply filters if provided in query parameters
     if (req.query.title) {
-      filterOptions.where = { title: { [Op.iLike]: `%${req.query.title}%` } };
+      filterOptions.where = {
+        ...filterOptions.where,
+        title: { [Op.iLike]: `%${req.query.title}%` }
+      };
     }
 
     if (req.query.minYear || req.query.maxYear) {
