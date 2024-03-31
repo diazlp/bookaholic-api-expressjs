@@ -1,20 +1,19 @@
-# Job Listing API
+# Bookaholic API
 
-This Node.js application provides an API to fetch job listings and job details.
+This Node.js application provides an API for managing books and categories, offering full CRUD functionality.
 
 ## Features
 
-- Fetch job listings with filtering options like description, location, and full-time positions.
-- Retrieve job details by ID.
-- Secure endpoints with JWT authorization.
+- Easily manage books and categories with intuitive CRUD operations.
+- Effortlessly filter books by various parameters such as title, publication year, and number of pages.
 
 ## Setup
 
 1. **Clone Repository:**
 
     ```bash
-    git clone https://gitlab.com/dansmp-ht-3/diazlinggaputra/dans_be
-    cd dans_be
+    git clone https://github.com/diazlp/bookaholic-api-expressjs
+    cd bookaholic-api-expressjs
     ```
 
 2. **Install Dependencies:**
@@ -25,27 +24,27 @@ This Node.js application provides an API to fetch job listings and job details.
 
 3. **Database Configuration:**
 
-    Go to `config/config.js` and setup your database configuration
+    Navigate to `config/config.js` and configure your database settings:
 
-    ```
+    ```json
     "username": "postgres",
     "password": "postgres",
-    "database": "job-list",
+    "database": "bookaholic-dev",
     "host": "127.0.0.1",
-    "dialect": "postgres",
+    "dialect": "postgres"
     ```
 
 4. **Run Migration & Seeder:**
 
-    Execute
+    Execute the following commands to run migrations and seeders:
+
     ```bash
     npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all
     ```
-    to populate all the necessary table and seeder data.
 
-    Default credentials as follows:
-
-    ```
+    Default credentials:
+    
+    ```json
     username: admin
     password: admin
     ```
@@ -58,9 +57,9 @@ This Node.js application provides an API to fetch job listings and job details.
 
 6. **Accessing the server:**
 
-    Browse through `http://localhost:8000/docs` for API documentation
+    Explore the API documentation at `http://localhost:8000/docs`.
 
-    Using the API through `http://localhost:8000` respectively.
+    Access the API at `http://localhost:8000`.
 
 ## API Endpoints
 
@@ -69,35 +68,41 @@ This Node.js application provides an API to fetch job listings and job details.
 - `POST /auth/register`: Register a new user.
 - `POST /auth/login`: Log in with existing credentials.
 
-### Get Job Listings
+### Categories
 
-- **URL:** `/jobs`
-- **Method:** `GET`
-- **Query Parameter:**
-    - `description`: Search term for job description.
-    - `location`: City name or location for job search.
-    - `full_time`: Limit results to full-time positions (true/false).
-    - `page`: Page number for pagination.
-- **Response:** JSON with job listings and pagination details.
+- `GET /categories`: Retrieve all categories.
+- `POST /categories`: Create a new category.
+- `PATCH /categories/:id`: Update an existing category by ID.
+- `DELETE /categories/:id`: Delete a category by ID.
+- `GET /categories/:id/books`: Retrieve all books within a specific category.
 
-### Get Job Detail
+### Books
 
-- **URL:** `/jobs/:id`
-- **Method:** `GET`
-- **Path Parameter:** `id`: Job ID.
-- **Response:** JSON with job details for the specified ID.
+- `GET /books`: Retrieve all books.
+- `POST /books`: Create a new book.
+- `PATCH /books/:id`: Update an existing book by ID.
+- `DELETE /books/:id`: Delete a book by ID.
 
-## Authentication & Authorization
+### Filtering Books
 
-- User registration is open to everyone.
-- User authentication is required for fetching job listing and job details.
+- Use query parameters to filter books:
+    - `title`: Search by book title (case-insensitive).
+    - `minYear`: Minimum publication year.
+    - `maxYear`: Maximum publication year.
+    - `minPage`: Minimum number of pages.
+    - `maxPage`: Maximum number of pages.
+    - `sortByTitle`: Sort books by title in ascending (`asc`) or descending (`desc`) order.
+
+Example:
+- `localhost:8000/books?sortByTitle=asc&minYear=2000&maxPage=150`
+- `localhost:8000/books?title=algoritma&minYear=2000&maxYear=2010`
 
 ## Technologies Used
 
 - Express.js
 - Bcrypt for Password Hashing
-- JWT for authentication
-- Sequelize ORM for PostgreSQL database
+- JWT for Authentication
+- Sequelize ORM for PostgreSQL Database
 - Swagger for API Documentation
 
 ## Contributors
